@@ -6,7 +6,7 @@ class Menu extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Menu_model', 'menu');
+        is_logged_in();
     }
 
 
@@ -45,6 +45,17 @@ class Menu extends CI_Controller
     }
 
 
+    public function hapussubmenu($id)
+    {
+
+        $this->menu->hapusSubMenu($id);
+        $this->session->set_flashdata('flash', 'deleted');
+        redirect('menu/submenu');
+    }
+
+
+
+
     public function subMenu()
     {
         $data['title'] = 'Submenu Management';
@@ -54,7 +65,7 @@ class Menu extends CI_Controller
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->form_validation->set_rules('title', 'Title', 'required');  
-        $this->form_validation->set_rules('menu_id ', 'Menu', 'required' );  
+        $this->form_validation->set_rules('menu_id ', 'Menu',);  
         $this->form_validation->set_rules('url', 'Url', 'required');  
         $this->form_validation->set_rules('icon', 'Icon', 'required');   
 

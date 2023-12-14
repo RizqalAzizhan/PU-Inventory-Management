@@ -18,7 +18,7 @@
 
         <?php if ( $this->session->flashdata('flash') ) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Menu has been successfuly  <?= $this->session->flashdata('flash');?>
+        Sub Menu has been successfuly  <?= $this->session->flashdata('flash');?>
         </div>
         <?php endif ;?>
                             
@@ -48,7 +48,7 @@
             <td><?=  $sm['is_active']; ?></td>
             <td>
                 <a href="" class="badge bg-success p-2 text-light" >edit </a> |
-                <a href="<?= base_url('menu/hapus/') ?><?= $sm['id']; ?>" class="badge bg-danger p-2 text-light" onclick="return confirm('yakin?');">delete</a>
+                <a href="<?= base_url('menu/hapussubmenu/') ?><?= $sm['id']; ?>" class="badge bg-danger p-2 text-light" onclick="return confirm('yakin?');">delete</a>
             </td>
             </tr>
             <?php endforeach ; ?>
@@ -87,19 +87,19 @@
 
                         </select>
                     </div>
-                    <div class="mb-3">
-                    <input type="text" class="form-control" id="url" name="url" placeholder="Submenu url">
-                    </div>
-                    <div class="mb-3">
-                    <input type="text" class="form-control" id="icon" name="icon" placeholder="Submenu icon">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Submenu url">
                     </div>
                     <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
-                        <label class="form-check-label" for="is_active">
-                            Active?
-                        </label>
+                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Submenu icon">
                     </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
+                            <label class="form-check-label" for="is_active">
+                                Active?
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
