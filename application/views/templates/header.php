@@ -25,3 +25,5 @@
 </head>
 
 <body class="bg-gradient-primary">
+
+<!-- Auth header -->

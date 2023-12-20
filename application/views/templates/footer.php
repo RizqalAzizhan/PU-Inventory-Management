@@ -13,3 +13,5 @@
 </body>
 
 </html>
+
+<!-- Auth Footer -->

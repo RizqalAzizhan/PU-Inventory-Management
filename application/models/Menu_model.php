@@ -27,6 +27,12 @@ class Menu_model extends CI_model
         $this->db->delete('user_sub_menu');
     }
 
+    public function hapusRole($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_role');
+    }
+
 
 
 }

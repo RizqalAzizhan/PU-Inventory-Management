@@ -7,6 +7,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Menu_model', "menu");
     }
 
 
@@ -35,6 +36,7 @@ class Menu extends CI_Controller
        
         }
     }
+
 
     public function hapus($id)
     {

@@ -22,7 +22,24 @@
             }
 
         }
+
     }
+
+    function check_access($role_id, $menu_id)
+        {
+            $ci = get_instance();
+
+            $ci->db->get('user_access_menu');
+            $ci->db->where('menu_id', $menu_id);
+            $ci->db->where('role_id', $role_id);
+            
+            $result = $ci->db->get('user_access_menu');
+            
+            if($result->num_rows() > 0) {
+                return "checked='checked'";
+            }
+
+        }
 
 
 ?>
