@@ -113,17 +113,86 @@ class Auth extends CI_Controller
                 'image' =>'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 1,
+                'is_active' => 0,
                 'date_created' => time()
             ];
 
-            $this->db->insert('user', $data);
+            // $this->db->insert('user', $data);
+
+            $this->_sendEmail();
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Congratulations your account has been created. Please Login
           </div>');
             redirect('auth');
         }
     }
+
+
+    private function _sendEmail() 
+    {
+
+        // $this->load->library("phpmailer_library");
+        //     $mail = $this->phpmailer_library->load();
+        //         $mail->Host = "smtp.gmail.com";
+        //         $mail->isSMTP();
+        //         $mail->SMTPOptions = array(
+        //                              'ssl' => array(
+        //                              'verify_peer' => false,
+        //                              'verify_peer_name' => false,
+        //                              'allow_self_signed' => true
+        //                                             )
+        //                                     );
+        //         $mail->SMTPAuth = TRUE;
+        //         $mail->Username = 'rizqalazizhan@gmail.com';
+        //         $mail->Password = 'rizqal2021';
+        //         $mail->SMTPSecure = "ssl";
+        //         $mail->Port = 465;
+
+
+        //         $mail->addAddress('rizqalazizhan231205@gmail.com');
+        //         $mail->setFrom('rizqalazizhan@gmail.com');
+
+        //         $mail->Subject = 'Test';
+        //         $mail->Message = 'Hello World';
+        //         $mail->isHTML(TRUE);
+        //         $mail->send();
+        
+        
+        // if ($mail->send()) {
+        //     return true;
+        // } else {
+        //     echo $this->email->print_debugger();
+        //     die;
+        //     redirect('Auth');
+        // }
+
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        $config['smtp_user'] = 'rizqalazizhan232105@gmail.com';
+        $config['smtp_pass'] = 'kituning2021';
+        $config['smtp_port'] = 465;
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'utf-8';
+        $config['newline'] = "\r\n";
+
+        $this->load->library('email',$config );
+
+        $this->email->from('rizqalazizhan231205@gmail.com', 'rizqal');
+        $this->email->to('rizqalazizhan@gmail.com');
+        $this->email->subject('Testing');
+        $this->email->message('Hello World');
+
+        if ($this->email->send() ) {
+            return true;
+        } else {
+            echo $this->email->print_debbugger();
+            die;
+        }
+
+    }
+
+
 
     public function logout()
     {
@@ -140,4 +209,4 @@ class Auth extends CI_Controller
     {
        $this->load->view('auth/blocked');
     }
-} 
+}
